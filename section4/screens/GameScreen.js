@@ -7,6 +7,7 @@ import NumberContainer from "../components/ui/NumberContainer";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import Card from "../components/ui/Card";
 import InstructionText from "../components/ui/InstructionText";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 function generateRandomBetween(min, max, exclude) {
   const rndNum = Math.floor(Math.random() * (max - min)) + min;
@@ -65,12 +66,12 @@ export default function GameScreen({ userNumber, onGameOver }) {
         <View className="flex-row ">
           <View className="flex-1 bg-[#7e0463] rounded-xl mx-2">
             <PrimaryButton onPress={() => nextGuessHandler("lower")}>
-              -
+              <Ionicons name="remove-sharp" size={24} color="white" />
             </PrimaryButton>
           </View>
           <View className="flex-1 bg-[#7e0463] rounded-xl mx-2">
             <PrimaryButton onPress={() => nextGuessHandler("greater")}>
-              +
+              <Ionicons name="add-sharp" size={24} color="white" />
             </PrimaryButton>
           </View>
         </View>
