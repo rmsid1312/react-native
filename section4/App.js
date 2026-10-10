@@ -6,6 +6,7 @@ import GameScreen from "./screens/GameScreen";
 import { SafeAreaView } from "react-native";
 import Colors from "./constants/color";
 import GameOverScreen from "./screens/GameOverScreen";
+import "./global.css";
 
 export default function App() {
   const [userNumber, setUserNumber] = useState();

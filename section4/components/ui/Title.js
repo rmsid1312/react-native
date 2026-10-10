@@ -3,7 +3,11 @@ import { Text } from "react-native";
 import Colors from "../../constants/color";
 
 export function Title({ children }) {
-  return <Text style={styles.title}>{children}</Text>;
+  return (
+    <Text className="p-3 text-2xl font-bold text-center text-white border-2 border-white">
+      {children}
+    </Text>
+  );
 }
 
 const styles = StyleSheet.create({

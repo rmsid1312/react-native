@@ -3,7 +3,6 @@ import PrimaryButton from "../components/ui/PrimaryButton";
 import { useState } from "react";
 import Colors from "../constants/color";
 import { Title } from "../components/ui/Title";
-import { Text } from "react-native";
 import Card from "../components/ui/Card";
 import InstructionText from "../components/ui/InstructionText";
 
@@ -27,6 +26,7 @@ function StartGameScreen({ onPickNumber }) {
         "Number has to be a number between 1 to 99.",
         [{ text: "Okay", style: "destructive", onPress: resetInputHandler }],
       );
+      return;
     }
 
     console.log("Vaild Number !");
