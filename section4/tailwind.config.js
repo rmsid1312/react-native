@@ -7,7 +7,12 @@ module.exports = {
   ],
   presets: [require("nativewind/preset")],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        "open-sans": ["open-sans"],
+        "open-sans-bold": ["open-sans-bold"],
+      },
+    },
   },
   plugins: [],
 };

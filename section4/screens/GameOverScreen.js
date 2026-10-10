@@ -2,6 +2,7 @@ import { View } from "react-native";
 import { Text } from "react-native";
 import { Title } from "../components/ui/Title";
 import { Image } from "react-native";
+import PrimaryButton from "../components/ui/PrimaryButton";
 
 export default function GameOverScreen() {
   return (
@@ -14,7 +15,13 @@ export default function GameOverScreen() {
         />
       </View>
       <View>
-        <Text>Your phone needed X rounds to guess the number Y.</Text>
+        <Text className="my-6 text-xl text-center">
+          Your phone needed{" "}
+          <Text className="font-open-sans text-rose-950">X</Text> rounds to
+          guess the number
+          <Text className="font-open-sans text-rose-950"> Y</Text>.
+        </Text>
+        <PrimaryButton>Start new Game</PrimaryButton>
       </View>
     </View>
   );
