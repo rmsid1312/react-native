@@ -3,7 +3,11 @@ import Colors from "../../constants/color";
 import { View } from "react-native";
 
 export default function Card({ children }) {
-  return <View style={styles.inputContainer}>{children}</View>;
+  return (
+    <View style={styles.inputContainer} className="bg-[#3b032f]">
+      {children}
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -13,7 +17,7 @@ const styles = StyleSheet.create({
     marginTop: 36,
     marginHorizontal: 24,
     padding: 16,
-    backgroundColor: Colors.primary800,
+    // backgroundColor: Colors.primary800,
     borderRadius: 8,
     // below for android shadow
     elevation: 4,
