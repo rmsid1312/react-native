@@ -1,4 +1,9 @@
-import { Alert, StyleSheet, useWindowDimensions } from "react-native";
+import {
+  Alert,
+  Dimensions,
+  StyleSheet,
+  useWindowDimensions,
+} from "react-native";
 import { View } from "react-native";
 import { Text } from "react-native";
 import { Title } from "../components/ui/Title";

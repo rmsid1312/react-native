@@ -1,4 +1,9 @@
-import { Dimensions, View } from "react-native";
+import {
+  Dimensions,
+  ScrollView,
+  useWindowDimensions,
+  View,
+} from "react-native";
 import { Text } from "react-native";
 import { Title } from "../components/ui/Title";
 import { Image } from "react-native";
@@ -9,24 +14,28 @@ export default function GameOverScreen({
   userNumber,
   onStartNewGame,
 }) {
+  const { width, height } = useWindowDimensions();
+  let imageSize;
   return (
-    <View className="items-center justify-center flex-1 p-12">
-      <Title>GAME OVER!</Title>
-      <View className="m-9 w-full overflow-hidden rounded-full border-[3px] border-rose-950 aspect-square">
-        <Image
-          source={require("../assets/images/success.png")}
-          className="w-full h-full"
-        />
+    <ScrollView className="flex-1">
+      <View className="items-center justify-center flex-1 p-12">
+        <Title>GAME OVER!</Title>
+        <View className="m-9 w-full overflow-hidden rounded-full border-[3px] border-rose-950 aspect-square landscape:w-2/12">
+          <Image
+            source={require("../assets/images/success.png")}
+            className="w-full h-full"
+          />
+        </View>
+        <View>
+          <Text className="my-6 text-xl text-center">
+            Your phone needed{" "}
+            <Text className="font-open-sans text-rose-950">{roundsNumber}</Text>{" "}
+            rounds to guess the number
+            <Text className="font-open-sans text-rose-950"> {userNumber}</Text>.
+          </Text>
+          <PrimaryButton onPress={onStartNewGame}>Start new Game</PrimaryButton>
+        </View>
       </View>
-      <View>
-        <Text className="my-6 text-xl text-center">
-          Your phone needed{" "}
-          <Text className="font-open-sans text-rose-950">{roundsNumber}</Text>{" "}
-          rounds to guess the number
-          <Text className="font-open-sans text-rose-950"> {userNumber}</Text>.
-        </Text>
-        <PrimaryButton onPress={onStartNewGame}>Start new Game</PrimaryButton>
-      </View>
-    </View>
+    </ScrollView>
   );
 }
