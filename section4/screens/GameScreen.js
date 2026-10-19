@@ -1,4 +1,4 @@
-import { Alert, StyleSheet } from "react-native";
+import { Alert, StyleSheet, useWindowDimensions } from "react-native";
 import { View } from "react-native";
 import { Text } from "react-native";
 import { Title } from "../components/ui/Title";
@@ -27,6 +27,8 @@ export default function GameScreen({ userNumber, onGameOver }) {
   const initialGuess = generateRandomBetween(1, 100, userNumber);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
   const [guessRound, setGuessRound] = useState([initialGuess]);
+  const { width, height } = useWindowDimensions();
+
   useEffect(() => {
     if (currentGuess === userNumber) {
       onGameOver(guessRound.length);
@@ -63,9 +65,8 @@ export default function GameScreen({ userNumber, onGameOver }) {
 
   const guessRoundListLength = guessRound.length;
 
-  return (
-    <View style={styles.screen}>
-      <Title>Opponent's Guess</Title>
+  let content = (
+    <>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card>
         <InstructionText style={styles.InstructionText}>
@@ -84,6 +85,35 @@ export default function GameScreen({ userNumber, onGameOver }) {
           </View>
         </View>
       </Card>
+    </>
+  );
+
+  if (width > 500) {
+    content = (
+      <>
+        <InstructionText style={styles.InstructionText}>
+          Higher or lower?
+        </InstructionText>
+        <View className="flex-row items-center justify-center">
+          <View className="flex-1 bg-[#7e0463] rounded-xl mx-2">
+            <PrimaryButton onPress={() => nextGuessHandler("lower")}>
+              <Ionicons name="remove-sharp" size={24} color="white" />
+            </PrimaryButton>
+          </View>
+          <NumberContainer>{currentGuess}</NumberContainer>
+          <View className="flex-1 bg-[#7e0463] rounded-xl mx-2">
+            <PrimaryButton onPress={() => nextGuessHandler("greater")}>
+              <Ionicons name="add-sharp" size={24} color="white" />
+            </PrimaryButton>
+          </View>
+        </View>
+      </>
+    );
+  }
+  return (
+    <View style={styles.screen}>
+      <Title>Opponent's Guess</Title>
+      {content}
       <View className="flex-1 p-4">
         {/* {guessRound.map((guessRound) => (
           <Text key={guessRound}>{guessRound}</Text>
