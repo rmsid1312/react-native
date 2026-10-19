@@ -1,26 +1,9 @@
-import { StyleSheet } from "react-native";
 import { Text } from "react-native";
-import Colors from "../../constants/color";
 
 export function Title({ children }) {
   return (
-    <Text className="p-3 text-2xl font-bold text-center text-white border-2 border-white">
+    <Text className="p-3 text-2xl font-bold text-center text-white border-2 border-white android:border-2">
       {children}
     </Text>
   );
 }
-
-const styles = StyleSheet.create({
-  title: {
-    fontFamily: "open-sans-bold",
-    fontSize: 18,
-    // fontWeight: "bold",
-    color: "white",
-    textAlign: "center",
-    borderWidth: 2,
-    borderColor: "white",
-    padding: 12,
-    maxWidth: "20%",
-    width: 300,
-  },
-});
