@@ -1,14 +1,13 @@
+import { Ionicons } from "@expo/vector-icons";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createDrawerNavigator } from "@react-navigation/drawer";
 import { StatusBar } from "expo-status-bar";
 import "./global.css";
 import CategoriesScreen from "./screens/CategoriesScreen";
-import MealsOverviewScreen from "./screens/MealsOverviewScreen";
-import MealDetailScreen from "./screens/MealDetailScreen";
-import { Button } from "react-native";
 import FavoriteScreen from "./screens/FavoriteScreen";
-import { Ionicons } from "@expo/vector-icons";
+import MealDetailScreen from "./screens/MealDetailScreen";
+import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
