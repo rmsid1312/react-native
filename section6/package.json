@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "@react-navigation/drawer": "^7.14.4"
+    "@react-navigation/drawer": "^7.14.4",
+    "@reduxjs/toolkit": "^2.14.0",
+    "react-redux": "^9.3.1"
   }
 }
