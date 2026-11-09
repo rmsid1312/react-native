@@ -1,8 +1,9 @@
 import { Pressable, Text, View } from "react-native";
 import { getFormattedDate } from "../util/date";
 export default function ExpenseItem({ description, amount, date }) {
+  function expensePressHandler() {}
   return (
-    <Pressable>
+    <Pressable onPress={expensePressHandler} className="active:opacity-70">
       <View className="flex-row justify-between p-3 my-2 bg-primary500 rounded-xl android:elevation-md ios:shadow-md">
         <View>
           <Text className="text-lg font-bold text-primary50">
