@@ -37,7 +37,7 @@ const DUMMY_EXPENSES = [
 
 export default function ExpensesOutput({ expenses, expensesPeriod }) {
   return (
-    <View>
+    <View className="flex-1 p-6 bg-primary700">
       <ExpensesSummary expenses={DUMMY_EXPENSES} periodName={expensesPeriod} />
       <ExpensesList expenses={DUMMY_EXPENSES} />
     </View>
