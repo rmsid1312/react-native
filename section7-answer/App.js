@@ -1,14 +1,66 @@
-import "./global.css";
 import { StatusBar } from "expo-status-bar";
-import { Text, View } from "react-native";
+import "./global.css";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import ManageExpense from "./screens/ManageExpense";
+import RecentExpenses from "./screens/RecentExpense";
+import AllExpenses from "./screens/AllExpenses";
+import { GlobalStyles } from "./constant/styles";
+import { Ionicons } from "@expo/vector-icons";
 
+const Stack = createNativeStackNavigator();
+const BottomTabs = createBottomTabNavigator();
+
+function ExpenseOverview() {
+  return (
+    <BottomTabs.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+        headerTintColor: "white",
+        tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+        tabBarActiveTintColor: GlobalStyles.colors.accent500,
+      }}
+    >
+      <BottomTabs.Screen
+        name="RecentExpense"
+        component={RecentExpenses}
+        options={{
+          title: "Recent Expenses",
+          tabBarLabel: "Recent",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="hourglass" size={size} color={color}></Ionicons>
+          ),
+        }}
+      />
+      <BottomTabs.Screen
+        name="AllExpense"
+        component={AllExpenses}
+        options={{
+          title: "Recent Expenses",
+          tabBarLabel: "Recent",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="calendar" size={size} color={color}></Ionicons>
+          ),
+        }}
+      />
+    </BottomTabs.Navigator>
+  );
+}
 export default function App() {
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text className="text-xl font-bold text-blue-500">
-        NativeWind 적용 완료!
-      </Text>
+    <>
       <StatusBar style="auto" />
-    </View>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="ExpensesOverview">
+          <Stack.Screen
+            name="ExpensesOverview"
+            component={ExpenseOverview}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen name="ManageExpense" component={ManageExpense} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 }

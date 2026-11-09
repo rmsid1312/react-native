@@ -1,4 +1,8 @@
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 export default function AllExpenses() {
-  return <Text>All Expense Screen</Text>;
+  return (
+    <View>
+      <Text>All Expense Screen</Text>
+    </View>
+  );
 }

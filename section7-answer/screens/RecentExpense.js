@@ -1,4 +1,8 @@
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 export default function RecentExpenses() {
-  return <Text>Recent Expenses Screen</Text>;
+  return (
+    <View>
+      <Text>Recent Expenses Screen</Text>
+    </View>
+  );
 }

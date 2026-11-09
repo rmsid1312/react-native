@@ -1,4 +1,8 @@
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 export default function ManageExpense() {
-  return <Text>Manage Expense Screen</Text>;
+  return (
+    <View>
+      <Text>Manage Expense Screen</Text>
+    </View>
+  );
 }
