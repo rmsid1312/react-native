@@ -1,9 +1,10 @@
 import { useContext, useLayoutEffect } from "react";
-import { Text, View } from "react-native";
+import { Text, TextInput, View } from "react-native";
 import IconButton from "../UI/IconButton";
 import { GlobalStyles } from "../constant/styles";
 import Button from "../UI/Button";
 import { ExpenseContext } from "../store/expense-context";
+import ExpenseForm from "../components/ManageExpense/ExpenseForm";
 
 export default function ManageExpense({ route, navigation }) {
   const expensesCtx = useContext(ExpenseContext);
@@ -44,6 +45,7 @@ export default function ManageExpense({ route, navigation }) {
 
   return (
     <View className="flex-1 p-6 bg-primary800">
+      <ExpenseForm />
       <View className="flex-row items-center justify-center ">
         <Button
           mode="flat"
