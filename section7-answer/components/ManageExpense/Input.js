@@ -1,8 +1,8 @@
 import { Text, TextInput, View } from "react-native";
 
-export default function Input({ label, textInputConfig }) {
+export default function Input({ label, className, textInputConfig }) {
   return (
-    <View className="mx-1 my-2">
+    <View className={`mx-1 my-2  ${className ?? ""} `}>
       <Text className="mb-1 text-lg text-primary100">{label}</Text>
       <TextInput
         {...textInputConfig}
