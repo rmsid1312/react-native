@@ -18,7 +18,15 @@ export default function ExpenseForm({ onCancel, onSubmit, subitButtonLabel }) {
     });
   }
 
-  function submitHandler() {}
+  function submitHandler() {
+    const expenseData = {
+      amount: +inputValues.amount,
+      date: new Date(inputValues.date),
+      description: inputValues.description,
+    };
+
+    onSubmit(expenseData);
+  }
 
   return (
     <View className="mt-10">
