@@ -45,19 +45,10 @@ export default function ManageExpense({ route, navigation }) {
 
   return (
     <View className="flex-1 p-6 bg-primary800">
-      <ExpenseForm />
-      <View className="flex-row items-center justify-center ">
-        <Button
-          mode="flat"
-          onPress={cancelHandler}
-          className="min-w-[120px] mx-2"
-        >
-          Cancel
-        </Button>
-        <Button onPress={confirmHandler} className="min-w-[120px] mx-2">
-          {isEditing ? "Update" : "Add"}
-        </Button>
-      </View>
+      <ExpenseForm
+        onCancel={cancelHandler}
+        subitButtonLabel={isEditing ? "Update" : "Add"}
+      />
       {isEditing && (
         <View className="items-center pt-2 mt-4 border-t-2 border-t-primary200">
           <IconButton

@@ -1,8 +1,25 @@
 import { Text, View } from "react-native";
 import Input from "./Input";
+import { useState } from "react";
+import Button from "../../UI/Button";
 
-export default function ExpenseForm() {
-  function amountChangedHandler() {}
+export default function ExpenseForm({ onCancel, onSubmit, subitButtonLabel }) {
+  const [inputValues, setInputValues] = useState({
+    amount: "",
+    date: "",
+    description: "",
+  });
+  function inputChangedHandler(inputIdentifier, enteredValue) {
+    setInputValues((curInputValues) => {
+      return {
+        ...curInputValues,
+        [inputIdentifier]: enteredValue,
+      };
+    });
+  }
+
+  function submitHandler() {}
+
   return (
     <View className="mt-10">
       <Text className="my-6 text-2xl font-bold text-center text-white">
@@ -14,7 +31,9 @@ export default function ExpenseForm() {
           className="flex-1"
           textInputConfig={{
             keyboardType: "decimal-pad",
-            onChangeText: amountChangedHandler,
+            onChangeText: (enteredValue) =>
+              inputChangedHandler("amount", enteredValue),
+            value: inputValues.amount,
           }}
         />
         <Input
@@ -23,7 +42,9 @@ export default function ExpenseForm() {
           textInputConfig={{
             placeholder: "YYYY-MM-DD",
             maxLength: 10,
-            onChangeText: () => {},
+            onChangeText: (enteredValue) =>
+              inputChangedHandler("date", enteredValue),
+            value: inputValues.date,
           }}
         />
       </View>
@@ -33,8 +54,19 @@ export default function ExpenseForm() {
           multiline: true,
           //   autoCapitalize: "none",
           //   autocorrect: false, // default is true
+          onChangeText: (enteredValue) =>
+            inputChangedHandler("description", enteredValue),
+          value: inputValues.description,
         }}
       />
+      <View className="flex-row items-center justify-center ">
+        <Button mode="flat" onPress={onCancel} className="min-w-[120px] mx-2">
+          Cancel
+        </Button>
+        <Button onPress={submitHandler} className="min-w-[120px] mx-2">
+          {subitButtonLabel}
+        </Button>
+      </View>
     </View>
   );
 }
