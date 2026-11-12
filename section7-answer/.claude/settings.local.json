@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm ls *)",
+      "Bash(npm install *)",
+      "Bash(node -e \"console.log\\(JSON.stringify\\(require\\('./package.json'\\).files\\)\\)\")",
+      "Bash(npm pack *)",
+      "Bash(node -e \"const p=require\\('./node_modules/react-native-worklets/package.json'\\); console.log\\('files:',p.files\\); console.log\\('rn field:',p['react-native']\\)\")",
+      "Bash(npm cache *)"
+    ]
+  }
+}
