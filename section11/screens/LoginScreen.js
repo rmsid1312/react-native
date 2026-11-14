@@ -12,7 +12,7 @@ function LoginScreen() {
   async function loginHandler({ email, password }) {
     setIsAuthenticating(true);
     try {
-      const token = login(email, password);
+      const token = await login(email, password);
       authCtx.authenticate(token);
     } catch (error) {
       Alert.alert(

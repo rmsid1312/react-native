@@ -19,3 +19,10 @@ export function createUser(email, password) {
 export function login(email, password) {
   return authenticate("/auth/login", email, password);
 }
+
+export async function fetchList(token) {
+  const response = await axios.get(BASE_URL + "/user/all", {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  console.log(response.data);
+}
