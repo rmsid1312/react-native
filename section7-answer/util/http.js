@@ -4,8 +4,7 @@ const BASE_URL = "http://172.30.1.52:8080/expense";
 
 if (__DEV__) {
   axios.interceptors.request.use(
-    (config) =>
-      new Promise((resolve) => setTimeout(() => resolve(config), 2000)),
+    (config) => new Promise((resolve) => setTimeout(() => resolve(config), 0)),
   );
 }
 
