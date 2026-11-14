@@ -7,23 +7,20 @@ export async function storeExpense(expenseData) {
   return id;
 }
 
-export function updateExpense() {}
-
 export async function fetchExpenses() {
   const response = await axios.get(BASE_URL + "/all");
-  const expenses = [];
-
-  for (const key in response.data) {
-    const expenseObj = {
-      id: key,
-      amount: response.data[key].amount,
-      description: response.data[key].description,
-      date: new Date(response.data[key].date),
-    };
-    expenses.push(expenseObj);
-  }
-
-  return expenses;
+  return response.data.map((e) => ({
+    id: e.id,
+    amount: e.amount,
+    description: e.description,
+    date: new Date(e.date),
+  }));
 }
 
-export function deleteExpense() {}
+export function updateExpense(id, expenseData) {
+  return axios.put(BASE_URL + `/${id}`, expenseData);
+}
+
+export function deleteExpense(id) {
+  return axios.delete(BASE_URL + `/${id}`);
+}
