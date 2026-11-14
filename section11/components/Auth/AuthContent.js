@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { Alert, View } from 'react-native';
-
-import FlatButton from '../ui/FlatButton';
-import AuthForm from './AuthForm';
+import { useState } from "react";
+import { Alert, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import FlatButton from "../ui/FlatButton";
+import AuthForm from "./AuthForm";
 
 function AuthContent({ isLogin, onAuthenticate }) {
-
+  const navigation = useNavigation();
   const [credentialsInvalid, setCredentialsInvalid] = useState({
     email: false,
     password: false,
@@ -13,8 +13,13 @@ function AuthContent({ isLogin, onAuthenticate }) {
     confirmPassword: false,
   });
 
+  console.log("isLogin : ", isLogin);
   function switchAuthModeHandler() {
-    // Todo
+    if (isLogin) {
+      navigation.replace("Signup");
+    } else {
+      navigation.replace("Login");
+    }
   }
 
   function submitHandler(credentials) {
@@ -23,7 +28,7 @@ function AuthContent({ isLogin, onAuthenticate }) {
     email = email.trim();
     password = password.trim();
 
-    const emailIsValid = email.includes('@');
+    const emailIsValid = email.includes("@");
     const passwordIsValid = password.length > 6;
     const emailsAreEqual = email === confirmEmail;
     const passwordsAreEqual = password === confirmPassword;
@@ -33,7 +38,7 @@ function AuthContent({ isLogin, onAuthenticate }) {
       !passwordIsValid ||
       (!isLogin && (!emailsAreEqual || !passwordsAreEqual))
     ) {
-      Alert.alert('Invalid input', 'Please check your entered credentials.');
+      Alert.alert("Invalid input", "Please check your entered credentials.");
       setCredentialsInvalid({
         email: !emailIsValid,
         confirmEmail: !emailIsValid || !emailsAreEqual,
@@ -46,7 +51,7 @@ function AuthContent({ isLogin, onAuthenticate }) {
   }
 
   return (
-    <View className="mx-8 mt-16 rounded-lg bg-primary800 p-4 android:elevation-sm ios:shadow-md">
+    <View className="p-4 mx-8 mt-16 rounded-lg bg-primary800 android:elevation-sm ios:shadow-md">
       <AuthForm
         isLogin={isLogin}
         onSubmit={submitHandler}
@@ -54,7 +59,7 @@ function AuthContent({ isLogin, onAuthenticate }) {
       />
       <View className="mt-2">
         <FlatButton onPress={switchAuthModeHandler}>
-          {isLogin ? 'Create a new user' : 'Log in instead'}
+          {isLogin ? "Create a new user" : "Log in instead"}
         </FlatButton>
       </View>
     </View>
