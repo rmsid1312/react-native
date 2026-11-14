@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { Alert, StyleSheet, View } from 'react-native';
+import { Alert, View } from 'react-native';
 
 import FlatButton from '../ui/FlatButton';
 import AuthForm from './AuthForm';
-import { Colors } from '../../constants/styles';
 
 function AuthContent({ isLogin, onAuthenticate }) {
 
@@ -47,13 +46,13 @@ function AuthContent({ isLogin, onAuthenticate }) {
   }
 
   return (
-    <View style={styles.authContent}>
+    <View className="mx-8 mt-16 rounded-lg bg-primary800 p-4 android:elevation-sm ios:shadow-md">
       <AuthForm
         isLogin={isLogin}
         onSubmit={submitHandler}
         credentialsInvalid={credentialsInvalid}
       />
-      <View style={styles.buttons}>
+      <View className="mt-2">
         <FlatButton onPress={switchAuthModeHandler}>
           {isLogin ? 'Create a new user' : 'Log in instead'}
         </FlatButton>
@@ -63,21 +62,3 @@ function AuthContent({ isLogin, onAuthenticate }) {
 }
 
 export default AuthContent;
-
-const styles = StyleSheet.create({
-  authContent: {
-    marginTop: 64,
-    marginHorizontal: 32,
-    padding: 16,
-    borderRadius: 8,
-    backgroundColor: Colors.primary800,
-    elevation: 2,
-    shadowColor: 'black',
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.35,
-    shadowRadius: 4,
-  },
-  buttons: {
-    marginTop: 8,
-  },
-});
