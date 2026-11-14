@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { ExpenseContext } from "../store/expense-context";
 export default function AllExpenses() {
   const expensesCtx = useContext(ExpenseContext);
+  console.log(expensesCtx.expenses);
   return (
     <ExpensesOutput
       expensesPeriod="Total"
