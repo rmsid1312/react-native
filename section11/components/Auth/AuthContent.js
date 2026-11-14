@@ -13,7 +13,6 @@ function AuthContent({ isLogin, onAuthenticate }) {
     confirmPassword: false,
   });
 
-  console.log("isLogin : ", isLogin);
   function switchAuthModeHandler() {
     if (isLogin) {
       navigation.replace("Signup");

@@ -9,13 +9,22 @@ function WelcomeScreen() {
   const token = authCtx.token;
 
   useEffect(() => {
-    fetchList(token);
+    async function loadList() {
+      try {
+        const data = await fetchList(token);
+        setList(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    loadList();
   }, [token]);
+
   return (
     <View className="items-center justify-center flex-1 p-8">
       <Text className="mb-2 text-xl font-bold">Welcome!</Text>
       <Text>You authenticated successfully!</Text>
-      <Text>{list}</Text>
+      <Text>{JSON.stringify(list)}</Text>
     </View>
   );
 }

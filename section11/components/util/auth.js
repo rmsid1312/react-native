@@ -2,27 +2,21 @@ import axios from "axios";
 
 const BASE_URL = "http://172.30.1.52:8080";
 
-async function authenticate(uri, email, password) {
-  const response = await axios.post(BASE_URL + uri, {
-    email: email,
-    password: password,
-  });
-
-  const token = response.data.accessToken;
-  return token;
-}
-
 export function createUser(email, password) {
-  return authenticate("/user", email, password);
+  return axios.post(BASE_URL + "/user", { email, password });
 }
 
-export function login(email, password) {
-  return authenticate("/auth/login", email, password);
+export async function login(email, password) {
+  const response = await axios.post(BASE_URL + "/auth/login", {
+    email,
+    password,
+  });
+  return response.data.accessToken;
 }
 
 export async function fetchList(token) {
   const response = await axios.get(BASE_URL + "/user/all", {
     headers: { Authorization: `Bearer ${token}` },
   });
-  console.log(response.data);
+  return response.data;
 }
