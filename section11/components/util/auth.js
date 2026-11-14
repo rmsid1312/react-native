@@ -8,14 +8,14 @@ async function authenticate(uri, email, password) {
     password: password,
   });
 
-  console.log("==================");
-  console.log(response.data);
+  const token = response.data.accessToken;
+  return token;
 }
 
-export async function createUser(email, password) {
-  await authenticate("/user", email, password);
+export function createUser(email, password) {
+  return authenticate("/user", email, password);
 }
 
-export async function login(email, password) {
-  await authenticate("/auth/login", email, password);
+export function login(email, password) {
+  return authenticate("/auth/login", email, password);
 }
