@@ -5,7 +5,7 @@ export default function PlaceList({ places }) {
   if (!places || places.length === 0) {
     return (
       <View className="items-center justify-center flex-1">
-        <Text className="text-xl">
+        <Text className="text-xl text-primary200">
           No places added yet - start adding some!
         </Text>
       </View>
