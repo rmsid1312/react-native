@@ -1,14 +1,18 @@
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { View } from "react-native";
 import "./global.css";
-import { StatusBar } from "expo-status-bar";
-import { Text, View } from "react-native";
+import AddPlace from "./screens/AddPlace";
+import AllPlaces from "./screens/AllPlaces";
 
+const Stack = createNativeStackNavigator();
 export default function App() {
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text className="text-xl font-bold text-blue-500">
-        NativeWind 동작 확인
-      </Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="AllPlaces" component={AllPlaces} />
+        <Stack.Screen name="AddPlace" component={AddPlace} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
