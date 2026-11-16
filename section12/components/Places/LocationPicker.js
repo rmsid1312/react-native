@@ -8,12 +8,14 @@ import { Alert, Image, Text, View } from "react-native";
 import OutlinedButton from "../UI/OutlinedButton";
 import { useState } from "react";
 import { getMapPreview } from "../../util/location";
+import { useNavigation } from "@react-navigation/native";
 
 export default function LocationPicker() {
   const [pickedLocation, setPickedLocation] = useState();
   const [locationPermissionInformation, requestPermission] =
     useForegroundPermissions();
 
+  const navigation = useNavigation();
   async function verifyPermissions() {
     if (
       locationPermissionInformation.status === PermissionStatus.UNDETERMINED
@@ -70,7 +72,10 @@ export default function LocationPicker() {
     );
   }
 
-  function pickOnMapHandler() {}
+  function pickOnMapHandler() {
+    navigation.navigate("Map");
+  }
+
   return (
     <View>
       <View className="items-center justify-center w-full my-2 overflow-hidden h-52 bg-primary100 rounded-xl">
@@ -80,7 +85,9 @@ export default function LocationPicker() {
         <OutlinedButton icon="location" onPress={getLocationHandler}>
           Locate User
         </OutlinedButton>
-        <OutlinedButton icon="map">Pick on map</OutlinedButton>
+        <OutlinedButton icon="map" onPress={pickOnMapHandler}>
+          Pick on map
+        </OutlinedButton>
       </View>
     </View>
   );
