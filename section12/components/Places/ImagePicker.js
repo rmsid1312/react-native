@@ -56,7 +56,7 @@ export default function ImagePicker() {
   }
   return (
     <View>
-      <View className="w-full h-[200px] my-2 justify-center items-center bg-primary100 rounded-xl">
+      <View className="w-full h-[200px] my-2 justify-center items-center bg-primary100 rounded-xl overflow-hidden">
         {imagePreview}
       </View>
       <OutlinedButton icon="camera" onPress={takeImageHandler}>

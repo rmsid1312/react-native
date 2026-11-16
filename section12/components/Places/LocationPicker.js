@@ -1,12 +1,16 @@
 import {
+  Accuracy,
   getCurrentPositionAsync,
   PermissionStatus,
   useForegroundPermissions,
 } from "expo-location";
-import { Alert, View } from "react-native";
+import { Alert, Image, Text, View } from "react-native";
 import OutlinedButton from "../UI/OutlinedButton";
+import { useState } from "react";
+import { getMapPreview } from "../../util/location";
 
 export default function LocationPicker() {
+  const [pickedLocation, setPickedLocation] = useState();
   const [locationPermissionInformation, requestPermission] =
     useForegroundPermissions();
 
@@ -37,8 +41,14 @@ export default function LocationPicker() {
     }
 
     try {
-      const location = await getCurrentPositionAsync();
+      const location = await getCurrentPositionAsync({
+        accuracy: Accuracy.High,
+      });
       console.log(location);
+      setPickedLocation({
+        lat: location.coords.latitude,
+        lng: location.coords.longitude,
+      });
     } catch (error) {
       Alert.alert(
         "Location unavailable",
@@ -47,10 +57,25 @@ export default function LocationPicker() {
     }
   }
 
+  let locationPreview = <Text>No location picked yet.</Text>;
+
+  if (pickedLocation) {
+    locationPreview = (
+      <Image
+        source={{
+          uri: getMapPreview(pickedLocation),
+        }}
+        className="w-full h-full"
+      />
+    );
+  }
+
   function pickOnMapHandler() {}
   return (
     <View>
-      <View className="items-center justify-center w-full my-2 h-52 bg-primary100 rounded-xl"></View>
+      <View className="items-center justify-center w-full my-2 overflow-hidden h-52 bg-primary100 rounded-xl">
+        {locationPreview}
+      </View>
       <View className="flex-row items-center justify-around">
         <OutlinedButton icon="location" onPress={getLocationHandler}>
           Locate User
