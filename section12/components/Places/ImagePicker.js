@@ -3,9 +3,11 @@ import {
   PermissionStatus,
   useCameraPermissions,
 } from "expo-image-picker";
-import { Alert, Button, Image, View } from "react-native";
+import { useState } from "react";
+import { Alert, Button, Image, Text, View } from "react-native";
 
 export default function ImagePicker() {
+  const [pickedImage, setPickedImage] = useState();
   const [cameraPermissionInformation, requestPermission] =
     useCameraPermissions();
 
@@ -39,10 +41,23 @@ export default function ImagePicker() {
       quality: 0.5,
     });
     console.log(image);
+    if (image.canceled) {
+      return;
+    }
+    setPickedImage(image.assets[0].uri);
+  }
+
+  let imagePreview = <Text>No image taken yet</Text>;
+  if (pickedImage) {
+    imagePreview = (
+      <Image source={{ uri: pickedImage }} className="w-full h-full" />
+    );
   }
   return (
     <View>
-      <View>{/* <Image source={{uri: }}/> */}</View>
+      <View className="w-full h-[200px] my-2 justify-center items-center bg-primary100 rounded-xl">
+        {imagePreview}
+      </View>
       <Button title="Take Image" onPress={takeImageHandler} />
     </View>
   );
