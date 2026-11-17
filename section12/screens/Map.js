@@ -24,7 +24,7 @@ export default function Map({ navigation }) {
       Alert.alert("No location picked", "You have to pick a location first!");
       return;
     }
-    navigation.navigate("AddPlace", {
+    navigation.popTo("AddPlace", {
       pickedLat: selectedLocation.lat,
       pickedLng: selectedLocation.lng,
     });
