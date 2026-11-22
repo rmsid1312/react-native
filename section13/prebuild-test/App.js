@@ -6,11 +6,15 @@ export default function App() {
   async function getUserLocationHandler() {
     let { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== "granted") {
-      setErrorMsg("Permission to access location was denied");
+      // setErrorMsg("Permission to access location was denied");
       return;
     }
 
-    let location = await Location.getCurrentPositionAsync({});
+    let location =
+      (await Location.getLastKnownPositionAsync()) ??
+      (await Location.getCurrentPositionAsync({
+        accuracy: Location.Accuracy.Balanced,
+      }));
     console.log(location);
   }
   return (
