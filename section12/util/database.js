@@ -28,3 +28,8 @@ export async function insertPlace(place) {
     ],
   );
 }
+
+export async function fetchPlaces() {
+  const database = await databasePromise;
+  return await database.getAllAsync("SELECT * FROM places");
+}
