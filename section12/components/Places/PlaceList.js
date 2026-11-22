@@ -13,6 +13,7 @@ export default function PlaceList({ places }) {
   }
   return (
     <FlatList
+      className="m-6"
       data={places}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => <PlaceItem place={item} />}
