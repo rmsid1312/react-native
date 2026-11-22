@@ -15,3 +15,16 @@ export async function init() {
     )`,
   );
 }
+export async function insertPlace(place) {
+  const database = await databasePromise;
+  await database.runAsync(
+    "INSERT INTO places (title, imageUri, address, lat, lng) VALUES (?,?,?,?,?)",
+    [
+      place.title,
+      place.imageUri,
+      place.address,
+      place.location.lat,
+      place.location.lng,
+    ],
+  );
+}
