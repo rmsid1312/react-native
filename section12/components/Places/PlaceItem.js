@@ -3,7 +3,9 @@ import { Image, Pressable, Text, View } from "react-native";
 export default function PlaceItem({ place, onSelect }) {
   return (
     <Pressable
-      onPress={onSelect}
+      onPress={() => {
+        onSelect(place.id);
+      }}
       className="flex-row items-start flex-1 my-3 rounded-xl bg-primary500 android:elevation-lg ios:shadow-xl active:opacity-90 "
     >
       <Image
