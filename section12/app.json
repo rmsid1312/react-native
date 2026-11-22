@@ -40,7 +40,8 @@
         {
           "locationAlwaysAndWhenInUsePermission": "Allow to use your location."
         }
-      ]
+      ],
+      "expo-sqlite"
     ]
   }
 }
