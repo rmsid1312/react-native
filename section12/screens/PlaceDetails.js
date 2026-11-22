@@ -1,21 +1,42 @@
 import { Image, ScrollView, Text, View } from "react-native";
 import OutlinedButton from "../components/UI/OutlinedButton";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { fetchPlaceDetails } from "../util/database";
 
 export default function PlaceDetails({ route }) {
+  const [fetchedPlace, setFetchedPlace] = useState();
+
   function showOnMapHandler() {}
 
   const selectedPlaceId = route.params.placeId;
 
-  useEffect(() => {}, [selectedPlaceId]);
+  useEffect(() => {
+    async function loadPlaceData() {
+      const place = await fetchPlaceDetails(selectedPlaceId);
+      setFetchedPlace(place);
+    }
+    loadPlaceData();
+  }, [selectedPlaceId]);
+
+  if (!fetchedPlace) {
+    return (
+      <View className="items-center justify-center flex-1">
+        <Text className="text-primary200">Loading place data...</Text>
+      </View>
+    );
+  }
+
   return (
     //className="items-center"
     <ScrollView>
-      <Image className="h-1/3 min-h-[300] w-full" />
+      <Image
+        className="h-1/3 min-h-[300] w-full"
+        source={{ uri: fetchedPlace.imageUri }}
+      />
       <View className="items-center justify-center">
         <View className="p-5">
           <Text className="text-lg text-center text-primary500 text-bold">
-            Address
+            {fetchedPlace.address}
           </Text>
         </View>
         <OutlinedButton icon="map" onPress={showOnMapHandler}>

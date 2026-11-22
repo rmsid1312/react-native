@@ -33,3 +33,20 @@ export async function fetchPlaces() {
   const database = await databasePromise;
   return await database.getAllAsync("SELECT * FROM places");
 }
+export async function fetchPlaceDetails(id) {
+  const database = await databasePromise;
+  const row = await database.getFirstAsync(
+    "SELECT * FROM places WHERE id = ?",
+    [id],
+  );
+  if (!row) {
+    return null;
+  }
+  return {
+    id: row.id,
+    title: row.title,
+    imageUri: row.imageUri,
+    address: row.address,
+    location: { lat: row.lat, lng: row.lng },
+  };
+}
