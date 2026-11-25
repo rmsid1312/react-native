@@ -4,7 +4,7 @@
       [
         "expo-notifications",
         {
-          "icon": "./local/assets/icon.png",
+          "icon": "./assets/android-icon-monochrome.png",
           "color": "#ffffff"
         }
       ]
